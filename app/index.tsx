@@ -1,15 +1,10 @@
-import { Text, View } from "react-native";
+import { useSuspense } from '@data-client/react';
+import { UserResource } from '@/resources/User';
+import UserList from '@/components/UserList';
 
 export default function Index() {
+  const users = useSuspense(UserResource.getList);
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <UserList users={users} />
   );
 }
