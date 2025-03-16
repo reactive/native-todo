@@ -25,7 +25,7 @@ export default function TodoScreen() {
 // We don't want suspense to reach our Stack so animations are smooth
 function TodoSync({userId}: {userId: string}) {
   const todos = useSuspense(TodoResource.getList, userId ? {userId} : {});
-  return <TodoList todos={todos} />
+  return <TodoList todos={todos} userId={userId} />
 }
 
 

@@ -1,14 +1,20 @@
 import React, { memo } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
-import { User } from '@/resources/User';
+import { User, UserResource } from '@/resources/User';
+import { useController, useLoading } from '@data-client/react';
 
 export const UserList = ({ users }: {users: User[]}) => {
+  const ctrl = useController();
+  const [handleRefresh, isLoading] = useLoading(async () => ctrl.fetch(UserResource.getList), [ctrl]);
+  
   return (
     <FlatList
       data={users}
       keyExtractor={(item) => item.username}
       renderItem={renderUser}
+      refreshing={isLoading}
+      onRefresh={handleRefresh}
     />
   );
 };

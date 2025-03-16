@@ -6,7 +6,7 @@ import {
 } from './PlaceholderBase';
 
 export class Todo extends PlaceholderEntity {
-  userId = 0;
+  userId = '0';
   title = '';
   completed = false;
 
