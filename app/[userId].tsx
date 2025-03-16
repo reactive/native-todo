@@ -3,6 +3,7 @@ import TodoList from '@/components/TodoList';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { User } from '@/resources/User';
 import { TodoResource } from '@/resources/Todo';
+import { ActivityIndicator } from 'react-native';
 
 export default function TodoScreen() {
   const { userId } = useLocalSearchParams();
@@ -15,7 +16,7 @@ export default function TodoScreen() {
           title: user?.name,
         }}
      /> 
-      <AsyncBoundary>
+      <AsyncBoundary fallback={<ActivityIndicator />}>
         <TodoSync userId={userId} />
       </AsyncBoundary>
     </>
