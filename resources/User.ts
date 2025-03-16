@@ -1,14 +1,11 @@
-import {
-  placeholderResource,
-  PlaceholderEntity,
-} from './PlaceholderBase';
+import { placeholderResource, PlaceholderEntity } from "./PlaceholderBase";
 
 export class User extends PlaceholderEntity {
-  name = '';
-  username = '';
-  email = '';
-  phone = '';
-  website = '';
+  name = "";
+  username = "";
+  email = "";
+  phone = "";
+  website = "";
   address: Address = {} as any;
   company: Company = {} as any;
 
@@ -32,11 +29,11 @@ export class User extends PlaceholderEntity {
     return `https://i.pravatar.cc/64?img=${this.id + 4}`;
   }
 
-  static key = 'User';
+  static key = "User";
 }
 
 export const UserResource = placeholderResource({
-  path: '/users/:id',
+  path: "/users/:id",
   schema: User,
 });
 

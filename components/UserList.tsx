@@ -1,13 +1,24 @@
-import React, { memo } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Link } from 'expo-router';
-import { User, UserResource } from '@/resources/User';
-import { useController, useLoading } from '@data-client/react';
+import { useController, useLoading } from "@data-client/react";
+import { Link } from "expo-router";
+import React, { memo } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
-export const UserList = ({ users }: {users: User[]}) => {
+import { User, UserResource } from "@/resources/User";
+
+export const UserList = ({ users }: { users: User[] }) => {
   const ctrl = useController();
-  const [handleRefresh, isLoading] = useLoading(async () => ctrl.fetch(UserResource.getList), [ctrl]);
-  
+  const [handleRefresh, isLoading] = useLoading(
+    async () => ctrl.fetch(UserResource.getList),
+    [ctrl],
+  );
+
   return (
     <FlatList
       data={users}
@@ -19,11 +30,14 @@ export const UserList = ({ users }: {users: User[]}) => {
   );
 };
 
-function renderUser({ item: user }: {item: User}) {
+function renderUser({ item: user }: { item: User }) {
   return (
     <Link href={`/${user.id}`} asChild>
       <TouchableOpacity style={styles.chatItem}>
-        <Image source={{ uri: user.profileImage }} style={styles.profileImage} />
+        <Image
+          source={{ uri: user.profileImage }}
+          style={styles.profileImage}
+        />
         <View style={styles.chatInfo}>
           <View style={styles.nameTimeRow}>
             <Text style={styles.name}>{user.name}</Text>
@@ -38,12 +52,12 @@ function renderUser({ item: user }: {item: User}) {
 
 const styles = StyleSheet.create({
   chatItem: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingHorizontal: 15,
     paddingVertical: 10,
-    alignItems: 'center',
+    alignItems: "center",
     borderBottomWidth: 0.5,
-    borderBottomColor: '#ddd',
+    borderBottomColor: "#ddd",
   },
   profileImage: {
     width: 50,
@@ -55,24 +69,24 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   nameTimeRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   name: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#000',
+    fontWeight: "bold",
+    color: "#000",
   },
   time: {
     fontSize: 12,
-    color: '#999',
+    color: "#999",
   },
   messagePreview: {
     fontSize: 14,
-    color: '#555',
+    color: "#555",
     marginTop: 2,
   },
 });
 
-export default memo(UserList)
+export default memo(UserList);

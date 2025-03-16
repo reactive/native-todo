@@ -1,10 +1,10 @@
-import { Entity } from '@data-client/rest';
+import { Entity } from "@data-client/rest";
 import {
   resource,
   ResourceGenerics,
   ResourceOptions,
   Resource,
-} from '@data-client/rest';
+} from "@data-client/rest";
 
 export abstract class PlaceholderEntity extends Entity {
   id = 0;
@@ -16,7 +16,7 @@ export function placeholderResource<O extends ResourceGenerics = any>(
 ): Resource<O> {
   return resource({
     ...options,
-    urlPrefix: 'https://jsonplaceholder.typicode.com',
+    urlPrefix: "https://jsonplaceholder.typicode.com",
     // hour expiry time since we want to keep our example mutations and the api itself never actually changes
     dataExpiryLength: 1000 * 60 * 60,
   } as O).extend({

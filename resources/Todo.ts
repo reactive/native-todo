@@ -1,20 +1,17 @@
-import { schema } from '@data-client/rest';
+import { schema } from "@data-client/rest";
 
-import {
-  placeholderResource,
-  PlaceholderEntity,
-} from './PlaceholderBase';
+import { placeholderResource, PlaceholderEntity } from "./PlaceholderBase";
 
 export class Todo extends PlaceholderEntity {
-  userId = '0';
-  title = '';
+  userId = "0";
+  title = "";
   completed = false;
 
-  static key = 'Todo';
+  static key = "Todo";
 }
 
 export const TodoResource = placeholderResource({
-  path: '/todos/:id',
+  path: "/todos/:id",
   schema: Todo,
   optimistic: true,
   searchParams: {} as { userId?: string | number } | undefined,
